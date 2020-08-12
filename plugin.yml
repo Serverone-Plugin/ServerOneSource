@@ -1,0 +1,6 @@
+name: ServerOneSource
+author: Robotix_00
+main: de.robotix_00.serverone.source.ServerOneSource
+version: 0.1
+api-version: 1.13
+load: STARTUP
