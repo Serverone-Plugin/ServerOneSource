@@ -15,9 +15,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class ServerOneConfig {
+    static HashMap<JavaPlugin, HashMap<String, ServerOneConfig>> config_list = new HashMap<>();
     File datei;
     YamlConfiguration config;
-    static HashMap<JavaPlugin, HashMap<String, ServerOneConfig>> config_list = new HashMap<>();
+
+    private ServerOneConfig(String folder, String name) {
+	datei = new File(folder, name);
+	config = YamlConfiguration.loadConfiguration(datei);
+    }
 
     public static void loadConfig(JavaPlugin plugin, String path, String... configs) {
 	HashMap<String, ServerOneConfig> list;
@@ -36,11 +41,6 @@ public class ServerOneConfig {
 
     public static ServerOneConfig getConfig(JavaPlugin plugin, String name) {
 	return config_list.get(plugin).get(name);
-    }
-
-    private ServerOneConfig(String folder, String name) {
-	datei = new File(folder, name);
-	config = YamlConfiguration.loadConfiguration(datei);
     }
 
     public YamlConfiguration getConfig() {
