@@ -1,4 +1,4 @@
-package de.robotix_00.serverone.source.util;
+package de.serverone.source.util;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Player;

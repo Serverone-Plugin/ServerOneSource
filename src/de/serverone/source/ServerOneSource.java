@@ -1,9 +1,9 @@
-package de.robotix_00.serverone.source;
+package de.serverone.source;
 
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import de.robotix_00.serverone.source.util.DefaultInvListener;
+import de.serverone.source.util.DefaultInvListener;
 
 public class ServerOneSource extends JavaPlugin {
     ServerOneSource plugin;

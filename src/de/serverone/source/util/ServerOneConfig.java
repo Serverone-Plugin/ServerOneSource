@@ -1,4 +1,4 @@
-package de.robotix_00.serverone.source.util;
+package de.serverone.source.util;
 
 import java.io.File;
 import java.io.FileOutputStream;

@@ -1,4 +1,4 @@
-package de.robotix_00.serverone.source.builder;
+package de.serverone.source.builder;
 
 import java.util.Arrays;
 import java.util.List;
