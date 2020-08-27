@@ -161,7 +161,7 @@ public class ServerOneConfig {
 
 	try {
 	    OutputStream stream = new FileOutputStream(file);
-	    stream.write(plugin.getResource(fileName).readAllBytes());
+	    stream.write(plugin.getResource("ymls/"+fileName).readAllBytes());
 	    stream.close();
 	} catch (Exception e) {
 	    plugin.getLogger().info("Could not load config '" + fileName + "'");
