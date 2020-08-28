@@ -1,9 +1,10 @@
 package de.serverone.source.util;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -145,23 +146,37 @@ public class ServerOneConfig {
     }
 
     public static void setupResource(String dataPath, String fileName, JavaPlugin plugin) {
+	dataPath = "plugins/" + dataPath;
 	File folder = new File(dataPath);
 	File file = new File(dataPath, fileName);
 
 	if (!folder.exists())
-	    folder.mkdir();
+	    folder.mkdirs();
 	if (file.exists())
 	    return;
 
 	try {
+	    
 	    file.createNewFile();
 	} catch (IOException e) {
 	    plugin.getLogger().info("Could not create config '" + fileName + "'");
+	    return;
 	}
 
 	try {
-	    OutputStream stream = new FileOutputStream(file);
-	    stream.write(plugin.getResource("ymls/"+fileName).readAllBytes());
+	    DataInputStream inStream = new DataInputStream(plugin.getResource("ymls/"+fileName));
+	    FileOutputStream stream = new FileOutputStream(file);
+	    
+	    int bufLen = 1024;
+	    byte[] buf = new byte[bufLen];
+	    int readLen;
+	    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+	        while ((readLen = inStream.read(buf, 0, bufLen)) != -1)
+	            outputStream.write(buf, 0, readLen);
+	    
+	    stream.write(outputStream.toByteArray());
+	    
+	    inStream.close();
 	    stream.close();
 	} catch (Exception e) {
 	    plugin.getLogger().info("Could not load config '" + fileName + "'");
