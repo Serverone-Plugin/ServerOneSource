@@ -146,7 +146,6 @@ public class ServerOneConfig {
     }
 
     public static void setupResource(String dataPath, String fileName, JavaPlugin plugin) {
-	dataPath = "plugins/" + dataPath;
 	File folder = new File(dataPath);
 	File file = new File(dataPath, fileName);
 
