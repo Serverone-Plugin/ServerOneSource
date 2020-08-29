@@ -11,22 +11,34 @@ import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 import com.sk89q.worldguard.protection.regions.RegionContainer;
 
 public class ServerOneWorldGuard {
-	
-	public static boolean canBreak(Location loc, Player player) {
-		RegionContainer container = WorldGuard.getInstance().getPlatform().getRegionContainer();
-		RegionManager regions = container.get(BukkitAdapter.adapt(player.getWorld()));	
-        ApplicableRegionSet regionses = regions.getApplicableRegions(BukkitAdapter.asBlockVector(loc));
-        for(ProtectedRegion r : regionses) {
-        	if(r.contains((BukkitAdapter.asBlockVector(loc)))) {
-        		boolean isOwner = r.getOwners().getUniqueIds().contains(player.getUniqueId());
-        		boolean isMember = r.getMembers().getUniqueIds().contains(player.getUniqueId());
-        		
-        		System.out.println(r.getOwners());
-        		
-        		if(isOwner || isMember) return true;
-        		return false;
-        	}
-        }
-		return true;
+
+    public static boolean canBreak(Location loc, Player player) {
+	RegionContainer container = WorldGuard.getInstance().getPlatform().getRegionContainer();
+	RegionManager regions = container.get(BukkitAdapter.adapt(player.getWorld()));
+	ApplicableRegionSet regionses = regions.getApplicableRegions(BukkitAdapter.asBlockVector(loc));
+	for (ProtectedRegion r : regionses) {
+	    if (r.contains((BukkitAdapter.asBlockVector(loc)))) {
+		boolean isOwner = r.getOwners().getUniqueIds().contains(player.getUniqueId());
+		boolean isMember = r.getMembers().getUniqueIds().contains(player.getUniqueId());
+
+		System.out.println(r.getOwners());
+
+		if (isOwner || isMember)
+		    return true;
+		return false;
+	    }
 	}
+	return true;
+    }
+
+    public static ProtectedRegion getOwnersRegion(Player player) {
+	RegionContainer container = WorldGuard.getInstance().getPlatform().getRegionContainer();
+	RegionManager regions = container.get(BukkitAdapter.adapt(player.getWorld()));
+	ApplicableRegionSet regionses = regions.getApplicableRegions(BukkitAdapter.asBlockVector(player.getLocation()));
+	for (ProtectedRegion r : regionses) {
+	    r.getOwners().contains(player.getUniqueId());
+	    return r;
+	}
+	return null;
+    }
 }

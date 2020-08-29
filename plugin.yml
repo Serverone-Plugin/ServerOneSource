@@ -1,6 +1,7 @@
 name: ServerOneSource
-authors: [Robotix_00, Luigistar]
+authors: [Robotix_00]
 main: de.serverone.source.ServerOneSource
-version: 0.1
-api-version: 1.13
-load: STARTUP
+version: 1.0
+api-version: 1.16
+softdepend:
+- WorldGuard
