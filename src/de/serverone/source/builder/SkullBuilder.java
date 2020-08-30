@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
@@ -15,16 +15,17 @@ public class SkullBuilder{
 	private ItemStack item;
 	private SkullMeta itemMeta;
 	
-	public SkullBuilder(Player player, int amount) {
+	public SkullBuilder(OfflinePlayer player, int amount) {
 		item = new ItemStack(Material.PLAYER_HEAD, amount);
 		itemMeta = (SkullMeta) item.getItemMeta();
 		itemMeta.setOwningPlayer(player);
 	}
-	public SkullBuilder(Player player) {
+	public SkullBuilder(OfflinePlayer player) {
 		item = new ItemStack(Material.PLAYER_HEAD);
 		itemMeta = (SkullMeta) item.getItemMeta();
 		itemMeta.setOwningPlayer(player);
 	}
+	
 	@SuppressWarnings("deprecation")
 	public SkullBuilder(String player) {
 		item = new ItemStack(Material.PLAYER_HEAD);
